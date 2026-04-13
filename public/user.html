@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETERNITY - Espace Personnel</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Ajouts spécifiques pour la gestion de profil et la grille */
+        .c-profile-editor { background: #fff; padding: 30px; border: 1px solid var(--gris-bordure); margin-bottom: 20px; }
+        .c-avatar-upload { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
+        .c-avatar-preview { width: 100px; height: 100px; border-radius: 50%; background: #eee; object-fit: cover; border: 2px solid var(--or-eternity); }
+        
+        .l-grid-matches { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .c-card-match { background: #fff; border: 1px solid var(--gris-bordure); padding: 20px; transition: 0.3s; position: relative; }
+        .c-card-match:hover { border-color: var(--or-eternity); transform: translateY(-5px); }
+        .c-card-match img { width: 100%; height: 200px; object-fit: cover; margin-bottom: 15px; }
+        .match-score { position: absolute; top: 10px; right: 10px; background: var(--or-eternity); color: #fff; padding: 5px 10px; font-weight: bold; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <header class="c-navbar">
+        <div class="logo">ETERNITY</div>
+        <div class="statut-capital">Niveau CVNU : -- | Souverain : Non Identifié</div>
+    </header>
+
+    <div class="l-interface-principale">
+        
+        <nav class="l-menu-gauche">
+            <h3 class="c-titre-section">Navigation</h3>
+            <a href="#" class="c-menu-lien" onclick="showView('profil')">Ma Gestion de Profil</a>
+            <a href="#" class="c-menu-lien actif" onclick="showView('matches')">Recherche d'Affinités</a>
+            <a href="#" class="c-menu-lien">Messagerie Sécurisée</a>
+            <h3 class="c-titre-section" style="margin-top: 30px;">Le Périmètre</h3>
+            <a href="#" class="c-menu-lien">Catalogue Savourer</a>
+            <a href="#" class="c-menu-lien">Catalogue Séjourner</a>
+        </nav>
+
+        <main class="l-flux-central">
+            
+            <section id="view-profil" class="view-content" style="display:none;">
+                <div class="c-profile-editor">
+                    <h2 class="titre-serif">Mon Identité Souveraine</h2>
+                    <div class="c-avatar-upload">
+                        <img src="" alt="Avatar" class="c-avatar-preview" id="preview-img">
+                        <div>
+                            <label>Photo de Profil (URL)</label>
+                            <input type="text" id="profile-photo" placeholder="Lien vers votre photo...">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Pseudo d'Affinité</label>
+                        <input type="text" id="profile-pseudo" placeholder="Ex: Mickael_92">
+                    </div>
+                    <div class="form-group">
+                        <label>Ma Description de Vie</label>
+                        <textarea id="profile-desc" rows="5"></textarea>
+                    </div>
+                    <button class="btn-submit" onclick="saveProfile()">Enregistrer les modifications</button>
+                </div>
+            </section>
+
+            <section id="view-matches" class="view-content">
+                <header class="form-header">
+                    <h2 class="titre-serif">Affinités Détectées</h2>
+                    <p class="legende">L'algorithme a identifié ces citoyens dont les projets de vie résonnent avec le vôtre.</p>
+                </header>
+                <div class="l-grid-matches" id="matches-container">
+                    </div>
+            </section>
+<div id="eternity-private-chat" style="display: none; flex-direction: column; height: 100%; background: #fff; border: 1px solid #E0E0E0; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+    
+    <div style="padding: 20px; background: #121212; color: #D4AF37; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #D4AF37;">
+        <h3 style="margin: 0; font-family: 'Playfair Display', serif;" id="chat-partner-name">Nom du Contact</h3>
+        <button onclick="closeChat()" style="background: none; border: 1px solid #D4AF37; color: #D4AF37; padding: 5px 15px; cursor: pointer; text-transform: uppercase; font-size: 0.8rem;">Retour</button>
+    </div>
+
+    <div id="private-chat-history" style="flex: 1; overflow-y: auto; padding: 20px; background: #FAFAFA;">
+        </div>
+
+    <form id="private-chat-form" style="display: flex; padding: 15px; border-top: 1px solid #E0E0E0; background: #fff;">
+        <input type="text" id="private-chat-input" placeholder="Écrivez votre message..." style="flex: 1; padding: 15px; border: 1px solid #E0E0E0; font-family: 'Montserrat', sans-serif;" required autocomplete="off">
+        <button type="submit" style="padding: 0 30px; background: #121212; color: #D4AF37; border: none; font-weight: 600; cursor: pointer; margin-left: 10px;">Envoyer</button>
+    </form>
+</div>
+        </main>
+
+        <aside class="l-panneau-droit">
+            <h3 class="c-titre-section">L'Architecte IA</h3>
+            <p id="ia-guidance">
+                <strong>Guide de Match :</strong><br>
+                L'algorithme analyse les "piliers" de votre matrice. Cliquez sur un profil pour initier une discussion sécurisée.
+            </p>
+        </aside>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="chat.js"></script>
+    <script>
+        // Logique de navigation simple
+        function showView(viewName) {
+            document.querySelectorAll('.view-content').forEach(v => v.style.display = 'none');
+            document.getElementById('view-' + viewName).style.display = 'block';
+            document.querySelectorAll('.c-menu-lien').forEach(l => l.classList.remove('actif'));
+            event.target.classList.add('actif');
+        }
+    </script>
+</body>
+</html>

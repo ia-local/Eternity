@@ -3,108 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ETERNITY - Espace Personnel</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>ETERNITY - Rencontre & Patrimoine</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
 
-    <header class="c-navbar">
-        <div class="logo">ETERNITY</div>
-        <div class="statut-capital">
-            Niveau CVNU : 04 | Capital d'acquisition : 0.00 €
+<nav class="nav-accueil">
+    <div class="logo-mini">ETERNITY</div>
+    <a href="user.html" class="btn-connexion">Se connecter</a>
+</nav>
+
+<header class="hero-header">
+    <h1 class="titre-principal">ETERNITY</h1>
+    <p class="sous-titre">La Rencontre, l'Art de vivre et le Patrimoine</p>
+    <a href="index.html" class="bouton-or">CRÉER VOTRE HISTOIRE</a>
+</header>
+
+<section id="concept" class="section-options">
+    <h2 class="titre-section">Plus qu'une rencontre, un projet à la carte</h2>
+    <p class="texte-intro">
+        Eternity vous accompagne bien au-delà de la première discussion. Une fois l'affinité confirmée, notre plateforme vous ouvre les portes de notre terroir : réservez une table, louez un appartement pour un week-end, ou commencez à bâtir votre futur foyer.
+    </p>
+
+    <div class="grille-options">
+        <div class="carte-option">
+            <h3>SAVOURER</h3>
+            <p>Accédez à notre carnet d'adresses des meilleurs restaurants de la région. Réservez votre table en un clic suite à une belle rencontre.</p>
         </div>
-    </header>
-
-    <div class="l-interface-principale">
-        
-        <nav class="l-menu-gauche">
-            <h3 class="c-titre-section">Navigation</h3>
-            <a href="#" class="c-menu-lien actif">Mon Profil Souverain</a>
-            <a href="#" class="c-menu-lien">Recherche d'Affinités</a>
-            <a href="#" class="c-menu-lien">Messagerie Sécurisée</a>
-            <h3 class="c-titre-section" style="margin-top: 30px;">Le Périmètre</h3>
-            <a href="#" class="c-menu-lien">Catalogue Savourer</a>
-            <a href="#" class="c-menu-lien">Catalogue Séjourner</a>
-            <a href="#" class="c-menu-lien">Mes Contrats (Art. 544)</a>
-        </nav>
-
-        <main class="l-flux-central">
-            <div class="c-conteneur-formulaire">
-                <header class="form-header">
-                    <h2 class="titre-serif">Votre Identité Souveraine</h2>
-                    <p class="legende">Pour des rencontres authentiques, détaillez votre projet de vie. Ces données chiffrées définissent votre ancrage territorial et activent le Bail Évolutif.</p>
-                </header>
-
-                <form id="eternity-profile-form">
-                    <fieldset>
-                        <legend>1. État Civil & Localisation</legend>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Prénom</label>
-                                <input type="text" name="firstName" placeholder="Mickael" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Nom</label>
-                                <input type="text" name="lastName" placeholder="Celsius" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Lieu de résidence actuel</label>
-                            <input type="text" name="city" placeholder="Ex: Paris, Lyon, Caen...">
-                        </div>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>2. Projet de Vie & Affinités</legend>
-                        <div class="form-group">
-                            <label>Vos piliers (Sélectionnez vos priorités)</label>
-                            <div class="checkbox-grid">
-                                <label class="cb-item"><input type="checkbox" name="skills" value="nature"> Nature & Calme</label>
-                                <label class="cb-item"><input type="checkbox" name="skills" value="famille"> Projet Famille</label>
-                                <label class="cb-item"><input type="checkbox" name="skills" value="agri"> Agri-Tech / Jardin</label>
-                                <label class="cb-item"><input type="checkbox" name="skills" value="artisanat"> Artisanat</label>
-                                <label class="cb-item"><input type="checkbox" name="skills" value="gastronomie"> Gastronomie</label>
-                                <label class="cb-item"><input type="checkbox" name="skills" value="autonomie"> Autonomie</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Décrivez votre partenaire idéal et votre projet à deux</label>
-                            <textarea name="bio" rows="4" placeholder="Ex: Je cherche à m'installer à Bavent pour créer une chambre d'hôte..."></textarea>
-                        </div>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>3. Vision de l'Habitat (Art. 544)</legend>
-                        <div class="form-group">
-                            <label>Type de bien visé</label>
-                            <select name="target_property">
-                                <option value="IMMO_BLOC_150">L'Annexe Sereine (150m²)</option>
-                                <option value="IMMO_BLOC_250">La Halle Originelle (250m²)</option>
-                                <option value="MAISON_INDIV">Maison de village</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Votre intention :</label>
-                            <label class="rb-item"><input type="radio" name="intention" value="SEJOURNER" checked> Séjourner (Location)</label>
-                            <label class="rb-item"><input type="radio" name="intention" value="ACQUERIR"> Acquérir (Bail Évolutif)</label>
-                        </div>
-                    </fieldset>
-
-                    <button type="submit" class="btn-submit">Certifier mon Profil Souverain</button>
-                </form>
-            </div>
-        </main>
-
-        <aside class="l-panneau-droit">
-            <h3 class="c-titre-section">L'Architecte IA</h3>
-            <p style="font-size: 0.9rem; line-height: 1.5;">
-                <strong>Bienvenue.</strong><br><br>
-                Complétez votre profil pour que je puisse vous proposer des profils compatibles et débloquer l'accès aux options d'hébergement.
-            </p>
-        </aside>
-
+        <div class="carte-option">
+            <h3>SÉJOURNER</h3>
+            <p>Testez votre vie à deux dans nos appartements et maisons de caractère. Louez un bien d'exception le temps d'un week-end ou d'une semaine.</p>
+        </div>
+        <div class="carte-option">
+            <h3>ACQUÉRIR</h3>
+            <p>Transformez votre location en titre de propriété. Notre "Bail Évolutif" valorise votre fidélité pour vous permettre de devenir propriétaire.</p>
+        </div>
     </div>
+</section>
 
-    <script src="app.js"></script>
+<section class="apercu-profil">
+    <div class="infos-profil">
+        <h2 class="titre-or">L'Identité Certifiée</h2>
+        <p>Découvrez des profils authentiques, classés par affinités et par projets de vie. Notre système évalue le sérieux des membres pour vous garantir des rencontres de qualité, prêtes à s'investir localement.</p>
+        <p><em>"Construisez plus qu'une rencontre, bâtissez une éternité."</em></p>
+        <a href="index.html" class="bouton-or" style="margin-top: 20px;">REJOINDRE LE RÉSEAU</a>
+    </div>
+    <div class="image-profil"></div>
+</section>
+
+<footer class="footer-accueil">
+    &copy; 2026 ETERNITY | PLATEFORME DE RENCONTRE ET D'ANCRAGE TERRITORIAL | DROIT CIVIL FRANÇAIS
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Si l'utilisateur a déjà un profil stocké (identifié via app.js),
+        // on ne lui fait pas perdre de temps sur la landing page, on l'envoie sur son espace.
+        const sessionActive = localStorage.getItem('souverain_id');
+        if (sessionActive) {
+            console.log("Utilisateur reconnu, redirection vers le tableau de bord...");
+            // window.location.href = 'index.html'; // Décommentez cette ligne en production pour forcer la redirection
+        }
+    });
+</script>
+
 </body>
 </html>

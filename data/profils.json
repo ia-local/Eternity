@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "utilisateurs": [
+    {
+      "id_souverain": "USR_67b8d9f7",
+      "pseudo": "Mon_Profil_Admin",
+      "prenom": "Mickael",
+      "photo_url": "",
+      "matrice_affinite": {
+        "piliers": ["nature", "autonomie", "famille"],
+        "bio": "Profil administrateur pour tester le moteur d'affinité.",
+        "intention_immo": "ACQUERIR"
+      },
+      "kpi_souverain": { "niveau_cvnu": 4, "capital_art544": 0 }
+    },
+    {
+      "id_souverain": "USR_v1ae8z2",
+      "pseudo": "Sophie_Natura",
+      "prenom": "Sophie",
+      "photo_url": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200",
+      "matrice_affinite": {
+        "piliers": ["nature", "autonomie", "famille"],
+        "bio": "Passionnée par la permaculture et le design durable. Je cherche un partenaire pour m'installer à Bavent et transformer un bloc de 150m2 en cocon autonome.",
+        "intention_immo": "ACQUERIR"
+      },
+      "kpi_souverain": { "niveau_cvnu": 5, "capital_art544": 1250 }
+    },
+    {
+      "id_souverain": "USR_k9p2m4x",
+      "pseudo": "Julien_Entreprendre",
+      "prenom": "Julien",
+      "photo_url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200",
+      "matrice_affinite": {
+        "piliers": ["entreprendre", "agri", "artisanat"],
+        "bio": "Je souhaite créer un atelier partagé dans la Halle de 250m2. Je cherche quelqu'un avec qui allier vie personnelle et projet professionnel local.",
+        "intention_immo": "ACQUERIR"
+      },
+      "kpi_souverain": { "niveau_cvnu": 7, "capital_art544": 4200 }
+    },
+    {
+      "id_souverain": "USR_m7z1l8q",
+      "pseudo": "Elena_Saveurs",
+      "prenom": "Elena",
+      "photo_url": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200",
+      "matrice_affinite": {
+        "piliers": ["gastronomie", "nature", "culture"],
+        "bio": "Épicurienne, je rêve d'une vie au calme près des circuits courts. Je préfère commencer par séjourner le week-end avant de m'engager sur un bail long.",
+        "intention_immo": "SEJOURNER"
+      },
+      "kpi_souverain": { "niveau_cvnu": 3, "capital_art544": 0 }
+    }
+  ]
+}

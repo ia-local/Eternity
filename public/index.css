@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
+
+:root {
+    --or-eternity: #D4AF37;
+    --noir-profond: #121212;
+    --blanc-pur: #FFFFFF;
+    --gris-perle: #F9F9F9;
+}
+
+body { 
+    font-family: 'Montserrat', sans-serif; 
+    margin: 0; 
+    background: var(--blanc-pur); 
+    color: var(--noir-profond); 
+}
+
+h1, h2, h3 { 
+    font-family: 'Playfair Display', serif; 
+}
+
+/* NAVIGATION MINIMALISTE */
+.nav-accueil {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+.logo-mini {
+    color: var(--blanc-pur);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+.btn-connexion {
+    color: var(--blanc-pur);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-bottom: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.btn-connexion:hover {
+    color: var(--or-eternity);
+    border-bottom: 1px solid var(--or-eternity);
+}
+
+/* EN-TÊTE PRINCIPAL */
+.hero-header {
+    height: 100vh; /* Ajusté pour prendre tout l'écran */
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2000');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.titre-principal { font-size: 5rem; letter-spacing: 12px; margin: 0; }
+.sous-titre { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 4px; margin-top: 15px; margin-bottom: 30px;}
+
+.bouton-or {
+    display: inline-block;
+    padding: 15px 40px;
+    background: var(--or-eternity);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+.bouton-or:hover {
+    background: var(--blanc-pur);
+    color: var(--noir-profond);
+}
+
+/* SECTION DU CONCEPT */
+.section-options { padding: 100px 10%; text-align: center; }
+.titre-section { font-size: 2.5rem; margin-bottom: 50px; }
+.texte-intro { max-width: 800px; margin: 0 auto 60px; font-size: 1.1rem; line-height: 1.8; }
+
+.grille-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.carte-option {
+    padding: 40px;
+    background: var(--gris-perle);
+    border: 1px solid #eee;
+    transition: all 0.4s ease;
+}
+
+.carte-option:hover { 
+    background: var(--noir-profond); 
+    color: white; 
+    transform: translateY(-10px);
+    border-color: var(--or-eternity);
+}
+
+.carte-option h3 { color: var(--or-eternity); margin-bottom: 20px; font-size: 1.5rem; }
+
+/* SECTION PROFIL UTILISATEUR */
+.apercu-profil {
+    background: var(--noir-profond);
+    color: white;
+    padding: 100px 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.titre-or { font-size: 3rem; color: var(--or-eternity); margin-top: 0;}
+.image-profil { width: 45%; height: 500px; background: url('https://images.unsplash.com/photo-1516575150278-77136aed6920?auto=format&fit=crop&q=80&w=1000') center/cover; }
+.infos-profil { width: 45%; }
+
+.footer-accueil { padding: 50px; text-align: center; font-size: 0.8rem; color: #999; border-top: 1px solid #eee; }
