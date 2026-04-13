@@ -1,0 +1,21 @@
+[
+  {
+    "id": "1762461713200rtiois4",
+    "date_enregistrement": "2025-11-06T20:41:53.200Z",
+    "preteur_prenom": "Mickael",
+    "preteur_nom": "CELSIUS",
+    "preteur_date_naissance": "18/09/1987",
+    "preteur_lieu_naissance": "Cherbourg",
+    "preteur_adresse": "1 Impasse de l'Ancienne Poterie",
+    "emprunteur_prenom": "Citoyen",
+    "emprunteur_nom": "DUMONDE",
+    "emprunteur_date_naissance": "02/01/1970",
+    "emprunteur_lieu_naissance": "France",
+    "emprunteur_adresse_actuelle": "null",
+    "bien_adresse": "55, rue, faubourg Saint-Honoré",
+    "acte_ville": "Paris",
+    "acte_date": "07/11/2025",
+    "preteur_nom_complet": "Mickael CELSIUS",
+    "emprunteur_nom_complet": "Citoyen DUMONDE"
+  }
+]

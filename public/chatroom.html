@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>HALLE SOUVERAINE - CANAL DE CONCERTATION</title>
+    <link rel="stylesheet" href="chatroom.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ajout rapide pour le statut de chargement */
+        .typing-indicator { font-style: italic; color: #666; font-size: 0.9em; padding: 10px; }
+    </style>
+</head>
+<body class="gov-vignette">
+    <div class="l-main-interface">
+        
+        <aside class="l-left-aside" id="citizen-drawer">
+            <div class="aside-content">
+                <h3>REGISTRE CITOYEN</h3>
+                <div id="identity-vignette">
+                    <p><strong>CITOYEN :</strong> <span id="user-name">...</span></p>
+                    <p><strong>NIVEAU :</strong> <span id="lvl-display">04</span></p>
+                    <label>Neutralité :</label>
+                    <progress id="neutrality-score" value="0.5"></progress>
+                </div>
+                <hr>
+                <div class="kpi-box">
+                    <p><strong>INDICE CONFIANCE :</strong></p>
+                    <progress id="trust-bar" value="0.5" max="1"></progress>
+                </div>
+            </div>
+        </aside>
+
+        <section class="c-chat-engine">
+            <header class="c-chat-header">
+                <h2>CONVERSATION : RECONSTRUCTION BAVENT_01</h2>
+                <div class="status-indicator">
+                    <span class="status-dot"></span> SYNC_ACTIVE (PORT 5440)
+                </div>
+            </header>
+            
+            <div id="message-flow" class="c-message-container">
+                </div>
+
+            <div class="c-input-area">
+                <input type="text" id="user-input" placeholder="Instruction ou proposition pour l'école...">
+                <button id="send-btn">TRANSMETTRE</button>
+            </div>
+        </section>
+
+        <aside class="l-right-aside" id="lease-drawer">
+            <div class="aside-content">
+                <h3>BAIL ÉVOLUTIF (ART. 544)</h3>
+                <div class="legal-notice">
+                    <p><strong>TYPE :</strong> Bail Semence (Test)</p>
+                    <p><strong>STATUT :</strong> <span class="badge">EN NÉGOCIATION</span></p>
+                </div>
+                
+                <hr>
+                
+                <div id="equity-calculator">
+                    <h3>CAPITALISATION RUP</h3>
+                    <p class="big-kpi"><span id="equity-val">0.00</span> €</p>
+                    <p><small>Valeur générée par l'échange</small></p>
+                </div>
+
+                <hr>
+                
+                <h3>PLAN LPU (ASYNCHRONE)</h3>
+                <div id="lpu-map" class="ascii-map-container">
+                    [EN ATTENTE DONNÉES]
+                </div>
+            </div>
+        </aside>
+
+    </div>
+    <script src="CORE_SYSTEM_CVNU.js"></script>
+    <script src="chatroom.js"></script>
+</body>
+</html>

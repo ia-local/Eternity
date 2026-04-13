@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Loge | Administration ETERNITY</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <aside class="l-sidebar">
+        <div class="sidebar-header">
+            <h1>LA LOGE</h1>
+            <span>ETERNITY - Admin Hub</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item actif">Vue Globale</a>
+            <a href="#" class="nav-item">Modération des Profils</a>
+            <a href="#" class="nav-item">Catalogue (Savourer & Séjourner)</a>
+            <a href="#" class="nav-item">Suivi des Baux (Art. 544)</a>
+            <a href="#" class="nav-item">Paramètres IA Llama</a>
+        </nav>
+    </aside>
+
+    <main class="l-main-content">
+        
+        <header class="topbar">
+            <div class="titre-page">
+                <span style="color: #666; font-size: 0.9rem;">Administration /</span> 
+                <strong>Périmètre Local</strong>
+            </div>
+            </header>
+
+        <div class="dashboard-scroll">
+            
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-titre">Nouveaux Profils Validés</div>
+                    <div class="kpi-valeur" id="kpi-profils">--</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-titre">Matches Réalisés</div>
+                    <div class="kpi-valeur" id="kpi-matches">--</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-titre">Options (Savourer)</div>
+                    <div class="kpi-valeur" id="kpi-restos">--</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-titre">Capital Immobilier Généré</div>
+                    <div class="kpi-valeur or">En calcul...</div>
+                </div>
+            </div>
+
+            <section class="table-section">
+                <div class="table-header">
+                    <h2>Catalogue Immobilier (Séjourner / Acquérir)</h2>
+                    <button class="btn-action">+ Ajouter un Bien</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID Code</th>
+                            <th>Nom du Bien</th>
+                            <th>Loyer Test</th>
+                            <th>Bail Évolutif (Art. 544)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="immo-table-body">
+                        <tr><td colspan="5">Connexion au serveur...</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="table-section">
+                <div class="table-header">
+                    <h2>Catalogue Gastronomie (Savourer)</h2>
+                    <button class="btn-action">+ Ajouter un Restaurant</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID Code</th>
+                            <th>Établissement</th>
+                            <th>Type</th>
+                            <th>Mots-clés IA</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resto-table-body">
+                        <tr><td colspan="5">Connexion au serveur...</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="admin.js"></script>
+</body>
+</html>

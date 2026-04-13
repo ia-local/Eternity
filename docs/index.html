@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETERNITY - Rencontre & Patrimoine</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
+
+        :root {
+            --or-eternity: #D4AF37;
+            --noir-profond: #121212;
+            --blanc-pur: #FFFFFF;
+            --gris-perle: #F9F9F9;
+        }
+
+        body { font-family: 'Montserrat', sans-serif; margin: 0; background: var(--blanc-pur); color: var(--noir-profond); }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+        /* EN-TÊTE PRINCIPAL */
+        header {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .titre-principal { font-size: 5rem; letter-spacing: 12px; margin: 0; }
+        .sous-titre { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 4px; margin-top: 15px; }
+
+        /* SECTION DU CONCEPT */
+        .section-options { padding: 100px 10%; text-align: center; }
+        .titre-section { font-size: 2.5rem; margin-bottom: 50px; }
+        
+        .grille-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .carte-option {
+            padding: 40px;
+            background: var(--gris-perle);
+            border: 1px solid #eee;
+            transition: all 0.4s ease;
+        }
+
+        .carte-option:hover { 
+            background: var(--noir-profond); 
+            color: white; 
+            transform: translateY(-10px);
+            border-color: var(--or-eternity);
+        }
+
+        .carte-option h3 { color: var(--or-eternity); margin-bottom: 20px; font-size: 1.5rem; }
+
+        /* SECTION PROFIL UTILISATEUR */
+        .apercu-profil {
+            background: var(--noir-profond);
+            color: white;
+            padding: 100px 10%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .image-profil { width: 45%; height: 500px; background: url('https://images.unsplash.com/photo-1516575150278-77136aed6920?auto=format&fit=crop&q=80&w=1000') center/cover; }
+        .infos-profil { width: 45%; }
+
+        .bouton-or {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: var(--or-eternity);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        footer { padding: 50px; text-align: center; font-size: 0.8rem; color: #999; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 class="titre-principal">ETERNITY</h1>
+    <p class="sous-titre">La Rencontre, l'Art de vivre et le Patrimoine</p>
+    <a href="#concept" class="bouton-or">CRÉER VOTRE HISTOIRE</a>
+</header>
+
+<section id="concept" class="section-options">
+    <h2 class="titre-section">Plus qu'une rencontre, un projet à la carte</h2>
+    <p style="max-width: 800px; margin: 0 auto 60px; font-size: 1.1rem; line-height: 1.8;">
+        Eternity vous accompagne bien au-delà de la première discussion. Une fois l'affinité confirmée, notre plateforme vous ouvre les portes de notre terroir : réservez une table, louez un appartement pour un week-end, ou commencez à bâtir votre futur foyer.
+    </p>
+
+    <div class="grille-options">
+        <div class="carte-option">
+            <h3>SAVOURER</h3>
+            <p>Accédez à notre carnet d'adresses des meilleurs restaurants de la région. Réservez votre table en un clic suite à une belle rencontre.</p>
+        </div>
+        <div class="carte-option">
+            <h3>SÉJOURNER</h3>
+            <p>Testez votre vie à deux dans nos appartements et maisons de caractère. Louez un bien d'exception le temps d'un week-end ou d'une semaine.</p>
+        </div>
+        <div class="carte-option">
+            <h3>ACQUÉRIR</h3>
+            <p>Transformez votre location en titre de propriété. Notre "Bail Évolutif" valorise votre fidélité pour vous permettre de devenir propriétaire.</p>
+        </div>
+    </div>
+</section>
+
+<section class="apercu-profil">
+    <div class="infos-profil">
+        <h2 style="font-size: 3rem; color: var(--or-eternity);">L'Identité Certifiée</h2>
+        <p>Découvrez des profils authentiques, classés par affinités et par projets de vie. Notre système évalue le sérieux des membres pour vous garantir des rencontres de qualité, prêtes à s'investir localement.</p>
+        <p><em>"Construisez plus qu'une rencontre, bâtissez une éternité."</em></p>
+    </div>
+    <div class="image-profil"></div>
+</section>
+
+<footer>
+    &copy; 2026 ETERNITY | PLATEFORME DE RENCONTRE ET D'ANCRAGE TERRITORIAL | DROIT CIVIL FRANÇAIS
+</footer>
+
+</body>
+</html>

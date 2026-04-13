@@ -1,0 +1,139 @@
+/* chatroom.css */
+:root {
+    --gov-blue: #000091;
+    --gov-paper: #ffffff;
+    --gov-gray: #f6f6f6;
+    --text-main: #161616;
+    --gold-accent: #D4AF37;
+}
+
+body {
+    background-color: var(--gov-gray);
+    font-family: 'Marianne', Arial, sans-serif;
+    margin: 0;
+    overflow: hidden;
+}
+
+.l-main-interface {
+    display: grid;
+    grid-template-columns: 300px 1fr 300px;
+    height: 100vh;
+}
+
+/* Gestion des Asides (Tiroirs) */
+.l-left-aside, .l-right-aside {
+    background: var(--gov-paper);
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+}
+
+.c-chat-engine {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-left: 2px solid var(--gov-blue);
+    border-right: 2px solid var(--gov-blue);
+}
+
+.c-message-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    background: #fff;
+    font-family: 'JetBrains Mono', monospace; /* Pour le rendu ASCII */
+}
+
+/* Style des bulles formatées par wrapASCII */
+.message-wrap pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 10px 0;
+    color: var(--gov-blue);
+}
+
+.c-input-area {
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    gap: 10px;
+}
+
+#user-input {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid var(--gov-blue);
+}
+
+button {
+    background: var(--gov-blue);
+    color: white;
+    border: none;
+    padding: 0 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+/* 1. VERROUILLAGE DE LA PAGE (Empêche le scroll global) */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Marianne', 'Segoe UI', Arial, sans-serif;
+    background-color: var(--bg-alt);
+    color: var(--text-base);
+    height: 100vh;       /* Force la hauteur écran totale */
+    width: 100vw;        /* Force la largeur écran totale */
+    overflow: hidden;    /* INTERDIT le scroll sur le body */
+}
+
+/* 2. CONTRAINTE DE LA GRILLE PRINCIPALE */
+.l-main-interface {
+    display: grid;
+    grid-template-columns: var(--aside-width) 1fr var(--aside-width);
+    grid-template-rows: 1fr; /* Une seule ligne qui prend tout l'espace */
+    height: 100%;            /* Remplis le body */
+    border-top: 4px solid var(--gov-blue);
+    overflow: hidden;        /* Empêche la grille de déborder */
+}
+
+/* 3. COLONNE CENTRALE (Le Moteur de Chat) */
+.c-chat-engine {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    height: 100%;            /* Force la hauteur max */
+    min-height: 0;           /* CRITIQUE : Permet au flex-child de scroller */
+    position: relative;
+    overflow: hidden;        /* Contraint les enfants */
+}
+
+/* 4. LA ZONE DE MESSAGES (Le seul endroit qui doit scroller au centre) */
+.c-message-container {
+    flex: 1;                 /* Prend tout l'espace restant */
+    overflow-y: auto;        /* Active le scroll vertical ICI */
+    overflow-x: hidden;      /* Pas de scroll horizontal */
+    padding: 24px;
+    
+    /* Scroll fluide */
+    scroll-behavior: smooth; 
+    
+    /* Fond papier millimétré */
+    background-image: 
+        linear-gradient(#f1f1f1 1px, transparent 1px),
+        linear-gradient(90deg, #f1f1f1 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* 5. CORRECTIF POUR LES ASIDES (Tiroirs Gauche/Droite) */
+/* Ils doivent aussi scroller indépendamment si le contenu (Carte/Profil) est trop long */
+.l-left-aside, .l-right-aside {
+    background-color: var(--gov-white);
+    border-right: 1px solid var(--border-default);
+    border-left: 1px solid var(--border-default);
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    
+    height: 100%;      /* Hauteur max */
+    min-height: 0;     /* Anti-débordement */
+    overflow-y: auto;  /* Scroll indépendant */
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "zone_territoriale": "Bavent et alentours",
+  "catalogue": {
+    "savourer": [
+      {
+        "id": "RESTO_01",
+        "nom": "L'Auberge de la Dives",
+        "type": "Cuisine de Terroir & Gastronomie",
+        "mots_cles": ["nature", "gastronomie", "tradition", "calme", "romantique"],
+        "budget_moyen": "45€",
+        "description": "Une table authentique privilégiant les circuits courts. Idéal pour un premier rendez-vous en toute sérénité."
+      },
+      {
+        "id": "RESTO_02",
+        "nom": "Le Bistrot des Créateurs",
+        "type": "Cuisine Moderne & Végétale",
+        "mots_cles": ["artisanat", "innovation", "végétal", "dynamique", "culture"],
+        "budget_moyen": "30€",
+        "description": "Un espace vivant où se retrouvent les entrepreneurs et artisans de la région."
+      }
+    ],
+    "sejourner_acquerir": [
+      {
+        "id": "IMMO_250",
+        "nom": "La Halle Originelle (250m²)",
+        "type": "Espace Modulable Premium",
+        "mots_cles": ["famille", "entrepreneuriat", "autonomie", "grand espace", "projet"],
+        "loyer_test_weekend": "350€",
+        "bail_evolutif": {
+          "disponible": true,
+          "loyer_mensuel": "1200€",
+          "taux_capitalisation_art544": "30%",
+          "prix_acquisition_final": "350000€"
+        },
+        "description": "Un vaste espace brut rénové. Parfait pour tester une vie commune et y implanter un projet entrepreneurial majeur."
+      },
+      {
+        "id": "IMMO_150",
+        "nom": "L'Annexe Sereine (150m²)",
+        "type": "Maison de Village Rénovée",
+        "mots_cles": ["famille", "nature", "calme", "jardin", "cocon"],
+        "loyer_test_weekend": "200€",
+        "bail_evolutif": {
+          "disponible": true,
+          "loyer_mensuel": "850€",
+          "taux_capitalisation_art544": "30%",
+          "prix_acquisition_final": "210000€"
+        },
+        "description": "Un écrin chaleureux au cœur du village avec un accès jardin. L'endroit idéal pour commencer une nouvelle histoire."
+      }
+    ]
+  }
+}

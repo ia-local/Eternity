@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>CONTRAT SOUVERAIN DÉFI 28</title>
+    <style>
+        body { background: #eef2f6; font-family: 'Courier New', Courier, monospace; padding: 40px; }
+        .contract-paper {
+            background: #fff;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        .stamp {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            border: 3px solid #f97316;
+            color: #f97316;
+            padding: 10px;
+            font-weight: bold;
+            transform: rotate(-15deg);
+            opacity: 0.8;
+            font-size: 1.2rem;
+        }
+        h1 { text-align: center; border-bottom: 2px solid #000; padding-bottom: 20px; }
+        .section { margin-bottom: 30px; }
+        .field { background: #f0f0f0; padding: 5px 10px; font-weight: bold; }
+        .price-tag { font-size: 2rem; color: #22c55e; font-weight: bold; text-align: right; }
+        .signature-area { margin-top: 60px; display: flex; justify-content: space-between; }
+        .sign-box { border-top: 1px solid #000; width: 40%; padding-top: 10px; text-align: center; }
+        
+        @media print {
+            body { background: #fff; }
+            .contract-paper { box-shadow: none; border: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="contract-paper">
+    <div class="stamp">CERTIFIÉ RUP<br>TVA CIRCULAIRE</div>
+
+    <h1>CONTRAT DE TRAVAIL À VALEUR AJOUTÉE</h1>
+    <div style="text-align:center; margin-bottom:40px; font-size:0.9rem;">PROTOCOL ID: SCTU-2026-BETA</div>
+
+    <div class="section">
+        <p><strong>ENTRE :</strong> La Production "DÉFI 28" (Représentée par Mickael)</p>
+        <p><strong>ET L'ARTISAN / ACTEUR :</strong></p>
+        <p>NOM / PRÉNOM : <span class="field" contenteditable="true">[SAISIR NOM]</span></p>
+        <p>RÔLE / MÉTIER : <span class="field" contenteditable="true">[SAISIR MÉTIER]</span></p>
+        <p>NIVEAU D'EXPERTISE (1-10) : <span class="field" id="levelInput" contenteditable="true">1</span></p>
+    </div>
+
+    <div class="section">
+        <h3>ARTICLE 1 : OBJET DU CONTRAT</h3>
+        <p>Le signataire s'engage à participer à l'œuvre "Quand Le Flirt Devient Impossible À Ignorer". En contrepartie, il ne reçoit pas une "dette", mais une part de la Valeur Ajoutée (TVA) générée par le projet.</p>
+    </div>
+
+    <div class="section">
+        <h3>ARTICLE 2 : RÉMUNÉRATION (ÉCHELLE RUP)</h3>
+        <p>Conformément au "Socle Citoyen" et au "Coefficient Directeur" :</p>
+        <ul>
+            <li>Socle Inaliénable (16 ans+) : <strong>700,00 €</strong></li>
+            <li>Prime de Compétence : <span id="bonusDisplay">0,00 €</span></li>
+        </ul>
+        <div style="border-top: 2px dashed #ccc; margin-top: 10px; padding-top: 10px;">
+            TOTAL NET À VERSER :
+            <div class="price-tag" id="totalDisplay">700,00 €</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>ARTICLE 3 : ORIGINE DES FONDS</h3>
+        <p>Les fonds proviennent de la redirection fiscale autorisée par le <strong>Manifeste 211</strong>. Aucun crédit bancaire n'est utilisé.</p>
+    </div>
+
+    <div class="signature-area">
+        <div class="sign-box">
+            <p>L'EMPLOYEUR (Mickael)</p>
+            <br><br>
+            <em style="color:#f97316;">Signé Numériquement</em>
+        </div>
+        <div class="sign-box">
+            <p>L'ARTISAN / ACTEUR</p>
+            <br><br>
+            (Signature)
+        </div>
+    </div>
+</div>
+
+<script>
+    // Petit script pour simuler le calcul en direct sur la tablette
+    const levelInput = document.getElementById('levelInput');
+    const totalDisplay = document.getElementById('totalDisplay');
+    const bonusDisplay = document.getElementById('bonusDisplay');
+
+    levelInput.addEventListener('input', calculate);
+
+    function calculate() {
+        let level = parseInt(levelInput.innerText) || 1;
+        if (level > 10) level = 10;
+        if (level < 1) level = 1;
+
+        const base = 700;
+        const max = 7500;
+        
+        let bonus = 0;
+        if (level > 1) {
+            // Formule exponentielle douce : (Max - Base) * ((Niveau-1)/9)^1.2
+            bonus = (max - base) * Math.pow((level - 1) / 9, 1.2);
+        }
+
+        const total = Math.min(Math.floor(base + bonus), max);
+
+        totalDisplay.innerText = total.toLocaleString('fr-FR') + " €";
+        bonusDisplay.innerText = Math.floor(bonus).toLocaleString('fr-FR') + " €";
+    }
+</script>
+
+</body>
+</html>

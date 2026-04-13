@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=JetBrains+Mono&display=swap');
+
+:root {
+    --admin-bg: #F4F6F8;
+    --admin-sidebar: #0A192F; /* Bleu Nuit très profond */
+    --admin-card: #FFFFFF;
+    --admin-text: #333333;
+    --or-eternity: #D4AF37;
+    --alerte-rouge: #E1000F;
+    --succes-vert: #22C55E;
+    --bordure: #E2E8F0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--admin-bg);
+    color: var(--admin-text);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- SIDEBAR (Menu Gauche) --- */
+.l-sidebar {
+    width: 260px;
+    background-color: var(--admin-sidebar);
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 25px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: var(--or-eternity);
+    letter-spacing: 2px;
+}
+
+.sidebar-header span { font-size: 0.8rem; color: #8892B0; }
+
+.sidebar-nav {
+    flex: 1;
+    padding: 20px 0;
+    overflow-y: auto;
+}
+
+.nav-item {
+    display: block;
+    padding: 15px 20px;
+    color: #8892B0;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    border-left: 3px solid transparent;
+}
+
+.nav-item:hover, .nav-item.actif {
+    color: white;
+    background-color: rgba(212, 175, 55, 0.1);
+    border-left-color: var(--or-eternity);
+}
+
+/* --- ZONE PRINCIPALE --- */
+.l-main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.topbar {
+    height: 70px;
+    background: var(--admin-card);
+    border-bottom: 1px solid var(--bordure);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+.alerte-sos {
+    background: rgba(225, 0, 15, 0.1);
+    color: var(--alerte-rouge);
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alerte-sos::before {
+    content: ''; display: inline-block; width: 10px; height: 10px;
+    background: var(--alerte-rouge); border-radius: 50%; animation: pulse 2s infinite;
+}
+
+.dashboard-scroll {
+    padding: 30px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* --- GRILLES DE CARTES KPI --- */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.kpi-card {
+    background: var(--admin-card);
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid var(--bordure);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.kpi-titre { font-size: 0.85rem; color: #666; text-transform: uppercase; font-weight: 600; margin-bottom: 10px; }
+.kpi-valeur { font-size: 1.8rem; font-weight: 700; color: var(--admin-sidebar); margin: 0; }
+.kpi-valeur.or { color: var(--or-eternity); }
+
+/* --- TABLEAUX DE GESTION --- */
+.table-section {
+    background: var(--admin-card);
+    border: 1px solid var(--bordure);
+    border-radius: 6px;
+    margin-bottom: 30px;
+}
+
+.table-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--bordure);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table-header h2 { margin: 0; font-size: 1.2rem; }
+
+.btn-action {
+    background: var(--admin-sidebar);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-action:hover { background: var(--or-eternity); color: var(--admin-sidebar); }
+
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; padding: 15px 20px; background: #F8FAFC; color: #666; font-size: 0.8rem; text-transform: uppercase; }
+td { padding: 15px 20px; border-bottom: 1px solid var(--bordure); font-size: 0.9rem; }
+tr:last-child td { border-bottom: none; }
+
+.badge-statut {
+    padding: 5px 10px; font-size: 0.75rem; font-weight: bold; border-radius: 20px; display: inline-block;
+}
+.badge-dispo { background: #DCFCE7; color: #166534; }
+.badge-occupe { background: #FEF3C7; color: #92400E; }
+.code-mono { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--admin-sidebar); }
+
+@keyframes pulse { 0% { transform: scale(0.95); opacity: 0.5; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(0.95); opacity: 0.5; } }

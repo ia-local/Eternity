@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETERNITY - Espace Personnel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="c-navbar">
+        <div class="logo">ETERNITY</div>
+        <div class="statut-capital">
+            Niveau CVNU : 04 | Capital d'acquisition : 0.00 €
+        </div>
+    </header>
+
+    <div class="l-interface-principale">
+        
+        <nav class="l-menu-gauche">
+            <h3 class="c-titre-section">Navigation</h3>
+            <a href="#" class="c-menu-lien actif">Mon Profil Souverain</a>
+            <a href="#" class="c-menu-lien">Recherche d'Affinités</a>
+            <a href="#" class="c-menu-lien">Messagerie Sécurisée</a>
+            <h3 class="c-titre-section" style="margin-top: 30px;">Le Périmètre</h3>
+            <a href="#" class="c-menu-lien">Catalogue Savourer</a>
+            <a href="#" class="c-menu-lien">Catalogue Séjourner</a>
+            <a href="#" class="c-menu-lien">Mes Contrats (Art. 544)</a>
+        </nav>
+
+        <main class="l-flux-central">
+            <div class="c-conteneur-formulaire">
+                <header class="form-header">
+                    <h2 class="titre-serif">Votre Identité Souveraine</h2>
+                    <p class="legende">Pour des rencontres authentiques, détaillez votre projet de vie. Ces données chiffrées définissent votre ancrage territorial et activent le Bail Évolutif.</p>
+                </header>
+
+                <form id="eternity-profile-form">
+                    <fieldset>
+                        <legend>1. État Civil & Localisation</legend>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Prénom</label>
+                                <input type="text" name="firstName" placeholder="Mickael" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Nom</label>
+                                <input type="text" name="lastName" placeholder="Celsius" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Lieu de résidence actuel</label>
+                            <input type="text" name="city" placeholder="Ex: Paris, Lyon, Caen...">
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>2. Projet de Vie & Affinités</legend>
+                        <div class="form-group">
+                            <label>Vos piliers (Sélectionnez vos priorités)</label>
+                            <div class="checkbox-grid">
+                                <label class="cb-item"><input type="checkbox" name="skills" value="nature"> Nature & Calme</label>
+                                <label class="cb-item"><input type="checkbox" name="skills" value="famille"> Projet Famille</label>
+                                <label class="cb-item"><input type="checkbox" name="skills" value="agri"> Agri-Tech / Jardin</label>
+                                <label class="cb-item"><input type="checkbox" name="skills" value="artisanat"> Artisanat</label>
+                                <label class="cb-item"><input type="checkbox" name="skills" value="gastronomie"> Gastronomie</label>
+                                <label class="cb-item"><input type="checkbox" name="skills" value="autonomie"> Autonomie</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Décrivez votre partenaire idéal et votre projet à deux</label>
+                            <textarea name="bio" rows="4" placeholder="Ex: Je cherche à m'installer à Bavent pour créer une chambre d'hôte..."></textarea>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>3. Vision de l'Habitat (Art. 544)</legend>
+                        <div class="form-group">
+                            <label>Type de bien visé</label>
+                            <select name="target_property">
+                                <option value="IMMO_BLOC_150">L'Annexe Sereine (150m²)</option>
+                                <option value="IMMO_BLOC_250">La Halle Originelle (250m²)</option>
+                                <option value="MAISON_INDIV">Maison de village</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Votre intention :</label>
+                            <label class="rb-item"><input type="radio" name="intention" value="SEJOURNER" checked> Séjourner (Location)</label>
+                            <label class="rb-item"><input type="radio" name="intention" value="ACQUERIR"> Acquérir (Bail Évolutif)</label>
+                        </div>
+                    </fieldset>
+
+                    <button type="submit" class="btn-submit">Certifier mon Profil Souverain</button>
+                </form>
+            </div>
+        </main>
+
+        <aside class="l-panneau-droit">
+            <h3 class="c-titre-section">L'Architecte IA</h3>
+            <p style="font-size: 0.9rem; line-height: 1.5;">
+                <strong>Bienvenue.</strong><br><br>
+                Complétez votre profil pour que je puisse vous proposer des profils compatibles et débloquer l'accès aux options d'hébergement.
+            </p>
+        </aside>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

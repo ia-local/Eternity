@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acte de Prêt à Usage (Commodat) - Pacte de Propriété Partagée</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Configuration de la police Inter pour une lecture claire */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Fond gris clair */
+        }
+        /* Style pour les placeholders pour les rendre visibles */
+        .placeholder {
+            color: #ef4444; /* Rouge vif pour le texte à compléter */
+            font-weight: 600;
+            border-bottom: 2px dashed #fca5a5;
+            padding: 0 4px;
+            display: inline-block;
+        }
+        /* Style des éléments du contrat après remplissage */
+        .filled-data {
+            color: #10b981; /* Vert pour les données remplies */
+            font-weight: 600;
+            border-bottom: 2px solid #34d399;
+            padding: 0 4px;
+            display: inline-block;
+        }
+        .article-content {
+            margin-top: 0.75rem;
+            color: #374151; /* Texte gris foncé */
+        }
+        .section-heading {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+        /* Style pour l'impression */
+        @media print {
+            .form-container, .print-button {
+                display: none !important; /* Masquer le formulaire et le bouton d'impression */
+            }
+            .placeholder {
+                color: black !important;
+                border-bottom: none !important;
+                font-weight: 400 !important;
+            }
+            .filled-data {
+                color: black !important;
+                border-bottom: none !important;
+                font-weight: 400 !important;
+            }
+            .max-w-4xl {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+            }
+            body {
+                background-color: white !important;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-xl p-6 md:p-10 lg:p-12 border border-gray-200">
+
+        <!-- FORMULAIRE DE SAISIE -->
+        <div id="form-container" class="form-container bg-blue-50 p-6 rounded-lg mb-8 shadow-inner">
+            <h3 class="text-xl font-bold text-blue-800 mb-4">Saisie des Données du Contrat</h3>
+            <form id="commodat-form" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                
+                <!-- Section Prêteur (Propriétaire) -->
+                <fieldset class="border p-3 rounded-lg col-span-1 border-blue-200">
+                    <legend class="font-semibold text-blue-600 px-1">Le Prêteur (Propriétaire)</legend>
+                    <input type="text" id="preteur_prenom" placeholder="Prénom Prêteur" class="w-full p-2 border rounded-md mb-2 focus:ring-blue-500 focus:border-blue-500">
+                    <input type="text" id="preteur_nom" placeholder="Nom Prêteur" class="w-full p-2 border rounded-md mb-2">
+                    <input type="date" id="preteur_date_naissance" class="w-full p-2 border rounded-md mb-2">
+                    <input type="text" id="preteur_lieu_naissance" placeholder="Lieu de naissance Prêteur" class="w-full p-2 border rounded-md mb-2">
+                    <input type="text" id="preteur_adresse" placeholder="Adresse Prêteur" class="w-full p-2 border rounded-md">
+                </fieldset>
+
+                <!-- Section Emprunteur (Occupant) -->
+                <fieldset class="border p-3 rounded-lg col-span-1 border-blue-200">
+                    <legend class="font-semibold text-blue-600 px-1">L'Emprunteur (Occupant)</legend>
+                    <input type="text" id="emprunteur_prenom" placeholder="Prénom Emprunteur" class="w-full p-2 border rounded-md mb-2">
+                    <input type="text" id="emprunteur_nom" placeholder="Nom Emprunteur" class="w-full p-2 border rounded-md mb-2">
+                    <input type="date" id="emprunteur_date_naissance" class="w-full p-2 border rounded-md mb-2">
+                    <input type="text" id="emprunteur_lieu_naissance" placeholder="Lieu de naissance Emprunteur" class="w-full p-2 border rounded-md mb-2">
+                    <input type="text" id="emprunteur_adresse_actuelle" placeholder="Adresse actuelle Emprunteur" class="w-full p-2 border rounded-md">
+                </fieldset>
+
+                <!-- Section Objet et Lieu -->
+                <fieldset class="border p-3 rounded-lg col-span-full border-blue-200">
+                    <legend class="font-semibold text-blue-600 px-1">Détails du Bien et Date de l'Acte</legend>
+                    <input type="text" id="bien_adresse" placeholder="Adresse complète du logement prêté" class="w-full p-2 border rounded-md mb-2">
+                    <div class="flex space-x-4">
+                        <input type="text" id="acte_ville" placeholder="Ville où l'acte est fait" class="w-1/2 p-2 border rounded-md">
+                        <input type="date" id="acte_date" class="w-1/2 p-2 border rounded-md">
+                    </div>
+                </fieldset>
+                
+                <button type="button" onclick="genererContrat()" class="col-span-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg mt-4 transition duration-300 shadow-md">
+                    Générer et Afficher le Contrat
+                </button>
+            </form>
+            <div id="message-box" class="mt-4 p-3 hidden rounded-lg text-center" role="alert"></div>
+        </div>
+        
+        <!-- Bouton d'impression (masqué lors de l'impression) -->
+        <button id="print-button" onclick="window.print()" class="print-button fixed bottom-4 right-4 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 z-50">
+            Imprimer le Contrat
+        </button>
+
+
+        <!-- DÉBUT DU CONTRAT (cible de remplacement) -->
+        <header class="text-center mb-10 border-b pb-4">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">
+                Pacte de Propriété Partagée
+            </h1>
+            <h2 class="text-xl sm:text-2xl font-semibold text-red-600 mt-2">
+                Acte de Prêt à Usage (ou Commodat) - à titre gratuit
+            </h2>
+            <p class="text-gray-500 mt-1 italic">
+                Régit par les articles 1875 et suivants du Code civil
+            </p>
+        </header>
+
+        <!-- PRÉAMBULE -->
+        <section class="mb-8">
+            <div class="section-heading text-lg font-bold text-gray-700">Préambule</div>
+            <p class="article-content text-justify">
+                Le présent acte est établi conformément aux dispositions des articles 1875 et suivants du Code civil. Il formalise le prêt gratuit d'un bien immobilier en pleine propriété, inspiré par les principes de solidarité et de responsabilité individuelle et collective, ainsi que par les valeurs énoncées dans la Déclaration des Droits de l'Homme et du Citoyen (DDHC).
+            </p>
+        </section>
+
+        <!-- ARTICLE 1 : LES PARTIES -->
+        <section class="mb-8">
+            <div class="section-heading">Article 1 : Les parties</div>
+            <p class="article-content">
+                Le présent contrat est conclu entre :
+            </p>
+            <div class="mt-4 p-4 border rounded-lg bg-gray-50">
+                <p class="mb-2">
+                    <span class="font-bold text-gray-700">Le Prêteur [Propriétaire] :</span>
+                    Votre <span class="placeholder" data-key="preteur_prenom">[Prénom]</span> et <span class="placeholder" data-key="preteur_nom">[Nom]</span>,
+                    né(e) le <span class="placeholder" data-key="preteur_date_naissance">[Votre date de naissance]</span> à <span class="placeholder" data-key="preteur_lieu_naissance">[Lieu de naissance]</span>,
+                    demeurant <span class="placeholder" data-key="preteur_adresse">[Votre adresse complète]</span>.
+                </p>
+                <p>
+                    <span class="font-bold text-gray-700">L'Emprunteur Occupant :</span>
+                    <span class="placeholder" data-key="emprunteur_prenom">[Prénom]</span> et <span class="placeholder" data-key="emprunteur_nom">[Nom]</span> de l'occupant,
+                    né(e) le <span class="placeholder" data-key="emprunteur_date_naissance">[Date de naissance de l'occupant]</span> à <span class="placeholder" data-key="emprunteur_lieu_naissance">[Lieu de naissance de l'occupant]</span>,
+                    demeurant <span class="placeholder" data-key="emprunteur_adresse_actuelle">[Adresse actuelle de l'occupant]</span>.
+                </p>
+            </div>
+        </section>
+
+        <!-- ARTICLE 2 : OBJET DE L'ACTE -->
+        <section class="mb-8">
+            <div class="section-heading">Article 2 : Objet de l'acte</div>
+            <p class="article-content text-justify">
+                Le Prêteur met à la disposition de l'Emprunteur, qui l'accepte, le bien immobilier situé à
+                <span class="placeholder" data-key="bien_adresse">[Adresse complète du logement prêté]</span>.
+                Ce prêt est consenti à titre gratuit, pour une durée indéterminée et pour un usage exclusif d'habitation.
+            </p>
+        </section>
+
+        <!-- ARTICLE 3 : OBLIGATIONS DE L'EMPRUNTEUR -->
+        <section class="mb-8">
+            <div class="section-heading">Article 3 : Obligations de l'emprunteur</div>
+            <p class="article-content mb-3 text-justify">
+                En acceptant les termes du présent contrat, l'Emprunteur s'engage à :
+            </p>
+            <ul class="list-disc ml-6 space-y-2 text-gray-700">
+                <li>
+                    <span class="font-medium">Usage et Entretien :</span> Jouir du bien en "bon père de famille", c'est-à-dire l'utiliser et l'entretenir avec soin. Les menues réparations, l'entretien courant et les dépenses liées à l'usage (eau, électricité, gaz, internet, etc.) sont à sa charge.
+                </li>
+                <li>
+                    <span class="font-medium">Assurance :</span> Souscrire et maintenir une assurance habitation couvrant les risques locatifs (incendie, dégât des eaux, etc.) et la responsabilité civile. Une attestation d'assurance devra être remise au Prêteur chaque année.
+                </li>
+                <li>
+                    <span class="font-medium">Respect des lieux :</span> Ne pas sous-louer, céder ou prêter le logement à un tiers, et ne pas y effectuer de travaux sans l'accord écrit et préalable du Prêteur.
+                </li>
+                <li>
+                    <span class="font-medium">Absence de loyer :</span> Le présent contrat étant à titre gratuit, l'Emprunteur ne versera aucun loyer au Prêteur.
+                </li>
+            </ul>
+        </section>
+
+        <!-- ARTICLE 4 : FIN DE L'ACTE ET RESTITUTION -->
+        <section class="mb-8">
+            <div class="section-heading">Article 4 : Fin de l'acte et restitution</div>
+            <p class="article-content text-justify">
+                Le présent acte est conclu pour une durée indéterminée. Il pourra être résilié par le Prêteur ou l'Emprunteur après un préavis de trois (3) mois, notifié par lettre recommandée avec accusé de réception. En cas de non-respect des obligations de l'Emprunteur, le Prêteur pourra mettre fin au contrat sans préavis. À la fin de l'acte, l'Emprunteur s'engage à restituer le bien dans l'état où il l'a reçu, à l'exception de la vétusté normale.
+            </p>
+        </section>
+
+        <!-- ARTICLE 5 : JUSTIFICATION JURIDIQUE -->
+        <section class="mb-12">
+            <div class="section-heading">Article 5 : Justification juridique</div>
+            <p class="article-content text-justify">
+                Cet acte est justifié par le droit de propriété du Prêteur, reconnu par l'article 544 du Code civil et par l'article 17 de la DDHC comme un droit inviolable et sacré.
+            </p>
+        </section>
+
+        <!-- SIGNATURES -->
+        <footer class="mt-8 pt-6 border-t border-gray-300">
+            <div class="flex flex-col sm:flex-row justify-between text-base">
+                <div class="mb-4 sm:mb-0">
+                    Fait à <span class="placeholder" data-key="acte_ville">[Ville]</span>, le <span class="placeholder" data-key="acte_date">[Date]</span>.
+                </div>
+                <div class="text-right italic text-gray-600">
+                    (En deux exemplaires originaux, dont un pour chaque partie)
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+                <!-- Signature Prêteur -->
+                <div class="flex flex-col items-start p-4 border border-gray-300 rounded-lg">
+                    <p class="font-bold mb-1 text-gray-700">Le Prêteur</p>
+                    <p>Votre <span class="placeholder" data-key="preteur_nom_complet">[Nom et Prénom]</span></p>
+                    <div class="mt-6 pt-4 border-t border-gray-400 w-full text-center text-sm text-gray-500">
+                        [Signature précédée de la mention "Lu et approuvé"]
+                    </div>
+                </div>
+
+                <!-- Signature Emprunteur -->
+                <div class="flex flex-col items-start p-4 border border-gray-300 rounded-lg">
+                    <p class="font-bold mb-1 text-gray-700">L'Emprunteur Occupant</p>
+                    <p><span class="placeholder" data-key="emprunteur_nom_complet">[Nom et Prénom]</span> de l'occupant</p>
+                    <div class="mt-6 pt-4 border-t border-gray-400 w-full text-center text-sm text-gray-500">
+                        [Signature précédée de la mention "Lu et approuvé"]
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+<script>
+    /**
+     * Formate une date au format YYYY-MM-DD en DD/MM/YYYY.
+     * @param {string} dateString - Date au format YYYY-MM-DD.
+     * @returns {string} Date au format DD/MM/YYYY.
+     */
+    function formatToFrenchDate(dateString) {
+        if (!dateString) return '';
+        const date = new Date(dateString);
+        // Ajout de 1 jour pour éviter les problèmes de fuseau horaire si la date est saisie comme minuit UTC
+        date.setDate(date.getDate() + 1);
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+    }
+
+    /**
+     * Affiche un message de succès ou d'erreur.
+     * @param {string} message - Le message à afficher.
+     * @param {string} type - 'success' ou 'error'.
+     */
+    function displayMessage(message, type) {
+        const msgBox = document.getElementById('message-box');
+        msgBox.textContent = message;
+        msgBox.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
+
+        if (type === 'success') {
+            msgBox.classList.add('bg-green-100', 'text-green-700');
+        } else if (type === 'error') {
+            msgBox.classList.add('bg-red-100', 'text-red-700');
+        }
+
+        setTimeout(() => {
+            msgBox.classList.add('hidden');
+        }, 5000);
+    }
+
+    /**
+     * Génère et met à jour le contrat avec les données du formulaire.
+     */
+    function genererContrat() {
+        // 1. Collecte des données
+        const data = {
+            preteur_prenom: document.getElementById('preteur_prenom').value.trim(),
+            preteur_nom: document.getElementById('preteur_nom').value.trim().toUpperCase(),
+            preteur_date_naissance: formatToFrenchDate(document.getElementById('preteur_date_naissance').value),
+            preteur_lieu_naissance: document.getElementById('preteur_lieu_naissance').value.trim(),
+            preteur_adresse: document.getElementById('preteur_adresse').value.trim(),
+            
+            emprunteur_prenom: document.getElementById('emprunteur_prenom').value.trim(),
+            emprunteur_nom: document.getElementById('emprunteur_nom').value.trim().toUpperCase(),
+            emprunteur_date_naissance: formatToFrenchDate(document.getElementById('emprunteur_date_naissance').value),
+            emprunteur_lieu_naissance: document.getElementById('emprunteur_lieu_naissance').value.trim(),
+            emprunteur_adresse_actuelle: document.getElementById('emprunteur_adresse_actuelle').value.trim(),
+            
+            bien_adresse: document.getElementById('bien_adresse').value.trim(),
+            acte_ville: document.getElementById('acte_ville').value.trim(),
+            acte_date: formatToFrenchDate(document.getElementById('acte_date').value),
+        };
+
+        // Données composées pour les signatures
+        data.preteur_nom_complet = `${data.preteur_nom} ${data.preteur_prenom}`;
+        data.emprunteur_nom_complet = `${data.emprunteur_nom} ${data.emprunteur_prenom}`;
+
+        // 2. Validation simple
+        const requiredFields = [
+            'preteur_nom', 'preteur_prenom', 'preteur_adresse',
+            'emprunteur_nom', 'emprunteur_prenom', 'emprunteur_adresse_actuelle',
+            'bien_adresse', 'acte_ville', 'acte_date'
+        ];
+
+        let isValid = true;
+        for (const key of requiredFields) {
+            if (!data[key]) {
+                isValid = false;
+                break;
+            }
+        }
+
+        if (!isValid) {
+            displayMessage("Veuillez remplir tous les champs obligatoires avant de générer le contrat.", 'error');
+            return;
+        }
+
+
+        // 3. Remplacement des placeholders
+        const placeholders = document.querySelectorAll('.placeholder');
+        let filledCount = 0;
+
+        placeholders.forEach(el => {
+            const key = el.getAttribute('data-key');
+            let value = data[key] || el.textContent;
+
+            // Logique spéciale pour les noms complets si la clé est présente dans le tag
+            if (key === 'preteur_nom_complet') {
+                value = `${data.preteur_prenom} ${data.preteur_nom}`;
+            } else if (key === 'emprunteur_nom_complet') {
+                value = `${data.emprunteur_prenom} ${data.emprunteur_nom}`;
+            }
+
+            // Mise à jour du contenu
+            if (data[key]) {
+                 el.textContent = value;
+                 el.classList.remove('placeholder');
+                 el.classList.add('filled-data');
+                 filledCount++;
+            } else {
+                 // Si la valeur manque, on garde le placeholder initial et le style rouge
+                 el.textContent = el.textContent || `[${key}]`; // Fallback si le data-key n'a pas de contenu initial
+                 el.classList.remove('filled-data');
+                 el.classList.add('placeholder');
+            }
+        });
+
+        displayMessage("Contrat généré avec succès ! Vous pouvez maintenant l'imprimer.", 'success');
+        
+        // Optionnel : Masquer le formulaire après génération pour mettre en avant le contrat
+        document.getElementById('form-container').classList.add('hidden');
+        document.getElementById('print-button').classList.remove('hidden');
+    }
+
+    // Fonction pour réinitialiser le style en cas de re-génération/édition
+    function resetContractStyles() {
+        const filledElements = document.querySelectorAll('.filled-data');
+        filledElements.forEach(el => {
+            el.classList.remove('filled-data');
+            el.classList.add('placeholder');
+            // Réinitialiser le texte si nécessaire (non fait ici pour simplicité, on se repose sur la regénération)
+        });
+    }
+    
+    // Au chargement initial, on s'assure que le bouton d'impression est caché
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('print-button').classList.add('hidden');
+    });
+
+/**
+ * Enregistre le contrat au format JSON sur le serveur via une requête POST.
+ * @param {object} contractData - Les données complètes du contrat.
+ */
+function enregistrerContrat(contractData) {
+    // URL de la nouvelle route d'API sur notre serveur Express
+    const apiUrl = '/enregistrer-contrat';
+
+    fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(contractData),
+    })
+    .then(response => {
+        if (!response.ok) {
+            // Lecture du message d'erreur du serveur
+            return response.json().then(error => {
+                throw new Error(error.message || `Erreur serveur: ${response.status}`);
+            });
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Succès : Afficher le message de confirmation du serveur
+        displayMessage(`✅ Contrat enregistré sous l'ID: ${data.id}. Fichier mis à jour.`, 'success');
+        // Optionnel : Réinitialiser le formulaire après un enregistrement réussi
+        document.getElementById('commodat-form').reset(); 
+    })
+    .catch(error => {
+        console.error('Erreur d\'enregistrement du contrat:', error);
+        displayMessage(`❌ Échec de l'enregistrement: ${error.message}.`, 'error');
+    });
+}
+
+/**
+ * Mise à jour de la fonction genererContrat pour gérer l'enregistrement
+ */
+function genererContrat() {
+    // 1. Collecte des données
+    const data = {
+        // ... (collecte de toutes les données du contrat comme précédemment) ...
+        preteur_prenom: document.getElementById('preteur_prenom').value.trim(),
+        preteur_nom: document.getElementById('preteur_nom').value.trim().toUpperCase(),
+        preteur_date_naissance: formatToFrenchDate(document.getElementById('preteur_date_naissance').value),
+        preteur_lieu_naissance: document.getElementById('preteur_lieu_naissance').value.trim(),
+        preteur_adresse: document.getElementById('preteur_adresse').value.trim(),
+        
+        emprunteur_prenom: document.getElementById('emprunteur_prenom').value.trim(),
+        emprunteur_nom: document.getElementById('emprunteur_nom').value.trim().toUpperCase(),
+        emprunteur_date_naissance: formatToFrenchDate(document.getElementById('emprunteur_date_naissance').value),
+        emprunteur_lieu_naissance: document.getElementById('emprunteur_lieu_naissance').value.trim(),
+        emprunteur_adresse_actuelle: document.getElementById('emprunteur_adresse_actuelle').value.trim(),
+        
+        bien_adresse: document.getElementById('bien_adresse').value.trim(),
+        acte_ville: document.getElementById('acte_ville').value.trim(),
+        acte_date: formatToFrenchDate(document.getElementById('acte_date').value),
+    };
+
+    // Données composées pour les signatures et l'objet JSON final
+    data.preteur_nom_complet = `${data.preteur_prenom} ${data.preteur_nom}`;
+    data.emprunteur_nom_complet = `${data.emprunteur_prenom} ${data.emprunteur_nom}`;
+
+    // 2. Validation simple
+    const requiredFields = [
+        // ... (liste des champs obligatoires comme précédemment) ...
+        'preteur_nom', 'preteur_prenom', 'preteur_adresse',
+        'emprunteur_nom', 'emprunteur_prenom', 'emprunteur_adresse_actuelle',
+        'bien_adresse', 'acte_ville', 'acte_date'
+    ];
+
+    let isValid = true;
+    for (const key of requiredFields) {
+        if (!data[key] || data[key].startsWith('[')) { // Vérifie si le champ est vide ou non initialisé
+            isValid = false;
+            break;
+        }
+    }
+
+    if (!isValid) {
+        displayMessage("Veuillez remplir tous les champs obligatoires avant de générer et d'enregistrer le contrat.", 'error');
+        return;
+    }
+
+
+    // 3. Remplacement des placeholders (comme précédemment)
+    // ... (code de remplacement des placeholders) ...
+    const placeholders = document.querySelectorAll('.placeholder');
+    placeholders.forEach(el => {
+        const key = el.getAttribute('data-key');
+        let value = data[key] || '';
+        
+        // Logique spéciale pour les noms complets si la clé est présente dans le tag
+        if (key === 'preteur_nom_complet') {
+            value = `${data.preteur_prenom} ${data.preteur_nom}`;
+        } else if (key === 'emprunteur_nom_complet') {
+            value = `${data.emprunteur_prenom} ${data.emprunteur_nom}`;
+        }
+
+        if (value) {
+             el.textContent = value;
+             el.classList.remove('placeholder');
+             el.classList.add('filled-data');
+        } else {
+             el.classList.remove('filled-data');
+             el.classList.add('placeholder');
+        }
+    });
+    
+    // 4. Enregistrement automatique après la génération réussie
+    enregistrerContrat(data);
+
+    // Affichage initial de succès (sera mis à jour par enregistrerContrat)
+    document.getElementById('form-container').classList.add('hidden');
+    document.getElementById('print-button').classList.remove('hidden');
+}
+</script>
+
+</body>
+</html>
